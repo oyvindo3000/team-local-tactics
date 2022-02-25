@@ -1,2 +1,2 @@
 # team-local-tactics
-A game for the mandatory assignment
+Per Bucher Johannessen og Øyvind Fjeldstad, gr. 52 på mittuib...

@@ -1,7 +1,11 @@
-
 from rich.table import Table
-
 from core import Champion, Match, Shape
+
+# The functions in this file is from the team-local-tactics.py 
+# with some modifications to fit the db-server-client setup.
+# The functions only take data sent from the server and make the text look nice.
+# We could also place the functions in the server-file, but was more
+# clean to make a helper.py to help out the server...
 
 def match_summary(match: Match) -> None:
 
@@ -11,7 +15,7 @@ def match_summary(match: Match) -> None:
         Shape.SCISSORS: ':victory_hand-emoji:'
     }
 
-    info = []
+    summary = []
     results = ""
 
     # For each round print a table with the results
@@ -33,11 +37,10 @@ def match_summary(match: Match) -> None:
             red, blue = key.split(', ')
             round_summary.add_row(f'{red} {EMOJI[round[key].red]}',
                                   f'{blue} {EMOJI[round[key].blue]}')
-        info.append(round_summary)
+        summary.append(round_summary)
 
     red_score, blue_score = match.score
-    results += f'Red: {red_score}\n'
-    results += f'Blue: {blue_score}'
+    results += f"Red: {red_score}\nBlue: {blue_score}"
 
     if red_score > blue_score:
         results += '\n[red]Red victory! :grin:'
@@ -46,9 +49,9 @@ def match_summary(match: Match) -> None:
     else:
         results += '\nDraw :expressionless:'
     
-    info.append(results)
+    summary.append(results)
 
-    return info
+    return summary
 
 
 def available_champs(champions: dict[Champion]) -> None:

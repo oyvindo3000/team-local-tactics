@@ -1,0 +1,40 @@
+----------------------------------------
+Red chose: Guan
+Blue chose: Twist
+Red chose: Asir
+Blue chose: Luanne
+Red: 0
+Blue: 6
+[blue]Blue victory! :grin:
+----------------------------------------
+;
+----------------------------------------
+Red chose: Vain
+Blue chose: Twist
+Red chose: Cactus
+Blue chose: Dr. Yi
+Red: 3
+Blue: 3
+Draw :expressionless:
+----------------------------------------
+;
+----------------------------------------
+Red chose: Twist
+Blue chose: Katina
+Red chose: Asir
+Blue chose: Luanne
+Red: 1
+Blue: 5
+[blue]Blue victory! :grin:
+----------------------------------------
+;
+----------------------------------------
+Red chose: Cactus
+Blue chose: Luanne
+Red chose: Asir
+Blue chose: Dr. Yi
+Red: 4
+Blue: 2
+[red]Red victory! :grin:
+----------------------------------------
+;

@@ -10,6 +10,7 @@ from champlistloader import load_some_champs
 from champlistloader import getChampNames
 
 def server_start():
+    # Creating a TCP socket
     server = socket(AF_INET,SOCK_STREAM)
     server.bind(("localhost", 5555))
     server.listen()
@@ -44,6 +45,8 @@ def waiter(player: socket):
 
 def gameSession(player1: socket,
                 player2: socket):
+
+    summary = "----------------------------------------\n"
 
     # List for selected champs for player 1 and 2.
     sel1 = []
@@ -89,6 +92,7 @@ def gameSession(player1: socket,
                 player1.send("YEAH".encode())
                 sel1.append(champname1)
                 print("[red]Player 1 [white]chose: " + champname1 + "\n")
+                summary += "Red chose: " + champname1 + "\n"
                 break
         
         output1 = "[red]Player 1[white]: " + champname1
@@ -105,6 +109,7 @@ def gameSession(player1: socket,
                 player2.send("YEAH".encode())
                 sel2.append(champname2)
                 print("[blue]Player 2 [white]chose: " + champname2 + "\n")
+                summary += "Blue chose: " + champname2 + "\n"
                 break
 
         output2 = "[blue]Player 2[white]: " + champname2
@@ -113,7 +118,7 @@ def gameSession(player1: socket,
     time.sleep(0.1)
 
     # Get the scores.
-    getscores(sel1, sel2, champions, player1, player2)
+    summary += getscores(sel1, sel2, champions, player1, player2)
 
     time.sleep(0.1)
     print("\nShutting down clients and server.")
@@ -121,6 +126,14 @@ def gameSession(player1: socket,
     # Sends the "codeword" "finito" to the players to let them know the game is done.
     player1.send("finito".encode())
     player2.send("finito".encode())
+
+
+    summary += "\n----------------------------------------\n;\n"
+
+    # Adding the summary to a db containing past match history.
+    historyDB = open('matchhistory.txt', 'a')
+    historyDB.write(summary)
+    historyDB.close()
 
 
 def validChamp( champname: str,
@@ -179,6 +192,9 @@ def getscores(  sel1: list,
 
         print("\n")
         print(matchSummary[i])
+
+    return matchSummary[3]
+
         
 
 server_start()
